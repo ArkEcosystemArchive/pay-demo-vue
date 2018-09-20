@@ -5,42 +5,55 @@
                     <p class="text-grey-darker text-base">
                         <!-- <a href="#" class="close float-right"><i class="fa fa-times"></i></a> -->
 
-                        <!-- <div class="mb-6 buttons flex">
-                            <button class="blue p-3 text-sm rounded-tl rounded-bl">Address</button>
-                            <button class="grey p-3 text-sm rounded-tr rounded-br">QR-Code</button>
-                        </div> -->
+                        <div class="mb-6 buttons flex">
+                            <button
+                                @click="changeMethod('address')"
+                                :class="{ blue: method === 'address', grey: method === 'qrcode' }"
+                                class="p-3 text-sm rounded-tl rounded-bl">Address</button>
 
-                        <div class="mt-3 pb-3 border-b-2 border-dashed">
-                            <small class="block mb-2">Product</small>
-                            <span class="font-bold">
-                                Surprise GIF
-                            </span>
+                            <button
+                                @click="changeMethod('qrcode')"
+                                :class="{ blue: method === 'qrcode', grey: method === 'address' }"
+                                class="p-3 text-sm rounded-tr rounded-br">QR-Code</button>
                         </div>
 
-                        <div class="mt-3 pb-3 border-b-2 border-dashed">
-                            <small class="block mb-2">ARK Address</small>
-                            <span class="font-bold">
-                                {{ recipient }}
-                                <a href="#" class="clipboard float-right"><img v-clipboard="recipient" src="images/clipboard.png"></a>
-                            </span>
+                        <div v-if="method === 'address'">
+                            <div class="mt-3 pb-3 border-b-2 border-dashed">
+                                <small class="block mb-2">Product</small>
+                                <span class="font-bold">
+                                    Surprise GIF
+                                </span>
+                            </div>
+
+                            <div class="mt-3 pb-3 border-b-2 border-dashed">
+                                <small class="block mb-2">ARK Address</small>
+                                <span class="font-bold">
+                                    {{ recipient }}
+                                    <a href="#" class="clipboard float-right"><img v-clipboard="recipient" src="images/clipboard.png"></a>
+                                </span>
+                            </div>
+
+                            <div class="mt-3 pb-3 border-b-2 border-dashed">
+                                <small class="block mb-2">Vendor Field</small>
+                                <span class="font-bold">
+                                    {{ vendorField }}
+                                    <a href="#" class="clipboard float-right"><img v-clipboard="vendorField" src="images/clipboard.png"></a>
+                                </span>
+                            </div>
+
+                            <div class="mt-3 pb-3 border-b-2 border-dashed" v-if="amountCrypto">
+                                <small class="block mb-2">Amount</small>
+                                <span class="font-bold block pt-1">
+                                    <span class="currency font-hairline rounded text-sm mr-2 px-2 py-1">DѦ</span>
+                                    {{ amountCrypto }}
+                                    <span class="fiat font-normal">/ ${{ amount }}</span>
+                                    <a href="#" class="clipboard float-right"><img v-clipboard="amountCrypto" src="images/clipboard.png"></a>
+                                </span>
+                            </div>
                         </div>
 
-                        <div class="mt-3 pb-3 border-b-2 border-dashed">
-                            <small class="block mb-2">Vendor Field</small>
-                            <span class="font-bold">
-                                {{ vendorField }}
-                                <a href="#" class="clipboard float-right"><img v-clipboard="vendorField" src="images/clipboard.png"></a>
-                            </span>
-                        </div>
-
-                        <div class="mt-3 pb-3 border-b-2 border-dashed" v-if="amountCrypto">
-                            <small class="block mb-2">Amount</small>
-                            <span class="font-bold block pt-1">
-                                <span class="currency font-hairline rounded text-sm mr-2 px-2 py-1">DѦ</span>
-                                {{ amountCrypto }}
-                                <span class="fiat font-normal">/ ${{ amount }}</span>
-                                <a href="#" class="clipboard float-right"><img v-clipboard="amountCrypto" src="images/clipboard.png"></a>
-                            </span>
+                        <div v-if="method === 'qrcode'" class="text-center">
+                            <qrcode :value="scanLink" :options="{ size: 256 }"></qrcode>
                         </div>
                     </p>
                 </div>
@@ -72,6 +85,7 @@
     export default {
         data() {
             return {
+                method: 'address',
                 hasPaid: false,
                 recipient: 'DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9',
                 amount: 1,
@@ -95,6 +109,9 @@
         computed: {
             countdownLabel: function () {
                 return `${this.timeMinutes}:${this.timeSeconds}`
+            },
+            scanLink: function () {
+                return `ark:${this.recipient}?amount=${this.amountCrypto}&vendor=${this.vendorField}`
             }
         },
         mounted() {
@@ -151,6 +168,9 @@
                 }
 
                 this.waitingTimer = setInterval(calculate.bind(this), 1000)
+            },
+            changeMethod(method) {
+                this.method = method
             }
         }
     }

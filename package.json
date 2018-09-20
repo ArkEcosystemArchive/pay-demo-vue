@@ -11,6 +11,7 @@
     },
     "devDependencies": {
         "@arkecosystem/pay": "https://github.com/ArkEcosystem/pay",
+        "@xkeshi/vue-qrcode": "^1.0.0",
         "axios": "^0.18",
         "cross-env": "^5.1",
         "laravel-mix": "^2.0",
