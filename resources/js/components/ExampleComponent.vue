@@ -53,7 +53,9 @@
                         </div>
 
                         <div v-if="method === 'qrcode'" class="text-center">
-                            <qrcode :value="scanLink" :options="{ size: 256 }"></qrcode>
+                            <a :href="scanLink">
+                                <qrcode :value="scanLink" :options="{ size: 256, padding: 0 }"></qrcode>
+                            </a>
                         </div>
                     </p>
                 </div>

@@ -15954,6 +15954,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 
 
@@ -37162,16 +37164,21 @@ var render = function() {
               : _vm._e(),
             _vm._v(" "),
             _vm.method === "qrcode"
-              ? _c(
-                  "div",
-                  { staticClass: "text-center" },
-                  [
-                    _c("qrcode", {
-                      attrs: { value: _vm.scanLink, options: { size: 256 } }
-                    })
-                  ],
-                  1
-                )
+              ? _c("div", { staticClass: "text-center" }, [
+                  _c(
+                    "a",
+                    { attrs: { href: _vm.scanLink } },
+                    [
+                      _c("qrcode", {
+                        attrs: {
+                          value: _vm.scanLink,
+                          options: { size: 256, padding: 0 }
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ])
               : _vm._e(),
             _vm._v(" "),
             _c("p")
