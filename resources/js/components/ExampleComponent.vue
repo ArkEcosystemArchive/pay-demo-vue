@@ -29,7 +29,9 @@
                                 <small class="block mb-2">ARK Address</small>
                                 <span class="font-bold">
                                     {{ recipient }}
-                                    <a href="#" class="clipboard float-right"><img v-clipboard="recipient" src="images/clipboard.png"></a>
+                                    <span class="clipboard float-right animated" @click="animateCopy">
+                                        <img v-clipboard="recipient" src="images/clipboard.png">
+                                    </span>
                                 </span>
                             </div>
 
@@ -37,7 +39,9 @@
                                 <small class="block mb-2">Vendor Field</small>
                                 <span class="font-bold">
                                     {{ vendorField }}
-                                    <a href="#" class="clipboard float-right"><img v-clipboard="vendorField" src="images/clipboard.png"></a>
+                                    <span class="clipboard float-right animated" @click="animateCopy">
+                                        <img v-clipboard="vendorField" src="images/clipboard.png">
+                                    </span>
                                 </span>
                             </div>
 
@@ -47,7 +51,9 @@
                                     <span class="currency font-hairline rounded text-sm mr-2 px-2 py-1">DѦ</span>
                                     {{ amountCrypto }}
                                     <span class="fiat font-normal">/ ${{ amount }}</span>
-                                    <a href="#" class="clipboard float-right"><img v-clipboard="amountCrypto" src="images/clipboard.png"></a>
+                                    <span class="clipboard float-right animated" @click="animateCopy">
+                                        <img v-clipboard="amountCrypto" src="images/clipboard.png">
+                                    </span>
                                 </span>
                             </div>
                         </div>
@@ -172,6 +178,15 @@
             },
             changeMethod(method) {
                 this.method = method
+            },
+            animateCopy(e) {
+                const element = e.target.parentElement
+
+                if (!element.classList.contains('bounce')) {
+                    element.classList.add('bounce')
+                }
+
+                setTimeout(() => { element.classList.remove('bounce') }, 1000)
             }
         }
     }
