@@ -119,7 +119,7 @@
                 return `${this.timeMinutes}:${this.timeSeconds}`
             },
             scanLink: function () {
-                return `ark:${this.recipient}?amount=${this.amountCrypto}&vendor=${this.vendorField}`
+                return `ark:${this.recipient}?amount=${this.amountCrypto}&vendorField=${this.vendorField}`
             }
         },
         mounted() {
