@@ -68,12 +68,16 @@
 
                 <div class="p-6" v-if="!hasPaid">
                     <div class="flex flex-no-wrap">
-                        <div class="w-16 flex-none">
-                            <img src="images/time.png" class="time">
-                        </div>
-                        <div class="w-4/5 flex-none">
+                        <div class="w-3/4 flex-none">
                             <small class="block mb-2">Time to pay:</small>
-                            <span class="font-bold">{{ countdownLabel }} <span class="waiting text-sm font-light">Waiting for transaction confirmation ...</span></span>
+                            <img src="images/time.png" class="time inline-block">
+                            <span class="inline-block pl-3">
+                                <span class="font-bold block">{{ countdownLabel }}</span>
+                                <span><span class="waiting text-sm font-light">Waiting for transaction confirmation ...</span></span>
+                            </span>
+                        </div>
+                        <div class="w-1/4 flex-none pt-6">
+                            <a :href="scanLink" class="pay-button p-3 no-underline rounded float-right">Pay Now</a>
                         </div>
                     </div>
                 </div>
