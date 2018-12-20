@@ -149,6 +149,7 @@
                     this.product = sample(this.products)
                 })
 
+                await gateway.prepare()
                 await gateway.start()
 
                 this.countdown()
