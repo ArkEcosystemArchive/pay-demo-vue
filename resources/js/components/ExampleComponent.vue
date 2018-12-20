@@ -9,12 +9,12 @@
                             <button
                                 @click="changeMethod('address')"
                                 :class="{ blue: method === 'address', grey: method === 'qrcode' }"
-                                class="p-3 text-sm rounded-tl rounded-bl">Address</button>
+                                class="tab p-3 text-sm rounded-tl rounded-bl">Address</button>
 
                             <button
                                 @click="changeMethod('qrcode')"
                                 :class="{ blue: method === 'qrcode', grey: method === 'address' }"
-                                class="p-3 text-sm rounded-tr rounded-br">QR-Code</button>
+                                class="tab p-3 text-sm rounded-tr rounded-br">QR-Code</button>
                         </div>
 
                         <div v-if="method === 'address'">
@@ -77,7 +77,7 @@
                             </span>
                         </div>
                         <div class="w-1/4 flex-none pt-6">
-                            <a :href="scanLink" class="pay-button p-3 no-underline rounded float-right">Pay Now</a>
+                            <a :href="scanLink" class="pay-button text-sm font-bold p-3 no-underline rounded float-right">Pay Now</a>
                         </div>
                     </div>
                 </div>
