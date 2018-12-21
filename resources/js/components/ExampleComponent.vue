@@ -158,6 +158,12 @@
                     this.product = sample(this.products)
                 })
 
+                gateway.peers([{
+                    ip: 'dexplorer.ark.io',
+                    port: 8443,
+                    protocol: 'https',
+                }])
+
                 await gateway.start()
 
                 this.countdown()
