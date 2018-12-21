@@ -124,7 +124,12 @@
         },
         computed: {
             countdownLabel: function () {
-                return `${this.timeMinutes}:${this.timeSeconds}`
+                const seconds = this.timeSeconds.toLocaleString('en-US', {
+                    minimumIntegerDigits: 2,
+                    useGrouping: false
+                })
+
+                return `${this.timeMinutes}:${seconds}`
             },
             scanLink: function () {
                 return `ark:${this.recipient}?amount=${this.amountCrypto}&vendorField=${this.vendorField}`
