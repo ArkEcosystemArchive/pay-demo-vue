@@ -59,7 +59,7 @@
                         </div>
 
                         <div v-if="method === 'qrcode'" class="text-center">
-                            <a :href="scanLink">
+                            <a :href="scanLink" target="_blank">
                                 <qrcode :value="scanLink" :options="{ size: 256, padding: 0 }"></qrcode>
                             </a>
                         </div>
@@ -77,7 +77,7 @@
                             </span>
                         </div>
                         <div class="w-1/4 flex-none pt-6">
-                            <a :href="scanLink" class="pay-button text-sm font-bold p-3 no-underline rounded float-right">Pay Now</a>
+                            <a :href="scanLink" target="_blank" class="pay-button text-sm font-bold p-3 no-underline rounded float-right">Pay Now</a>
                         </div>
                     </div>
                 </div>
