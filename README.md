@@ -6,6 +6,8 @@
 
 > A demo of https://github.com/ArkEcosystem/pay using Vue.js & Tailwind CSS
 
+> You can access it at https://arkecosystem.github.io/pay-demo-vue/
+
 ## Credits
 
 - [Brian Faust](https://github.com/faustbrian)
